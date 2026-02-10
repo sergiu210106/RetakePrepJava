@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="891.0" prefWidth="1002.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.UserController">
+   <children>
+      <ListView fx:id="feed" layoutX="6.0" layoutY="32.0" prefHeight="120.0" prefWidth="534.0" />
+      <ListView fx:id="userPosts" layoutX="6.0" layoutY="182.0" prefHeight="120.0" prefWidth="534.0" />
+      <ListView fx:id="subscriptions" layoutX="6.0" layoutY="332.0" prefHeight="120.0" prefWidth="534.0" />
+      <Label layoutX="6.0" layoutY="152.0" text="My Posts">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="6.0" text="Feed">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="4.0" layoutY="302.0" text="Subscriptions">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="7.0" layoutY="446.0" text="Topics">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <ListView fx:id="topics" layoutX="6.0" layoutY="477.0" prefHeight="120.0" prefWidth="534.0" />
+      <TextField fx:id="filterField" layoutX="101.0" layoutY="449.0" onKeyReleased="#handleFilter" />
+      <Button layoutX="353.0" layoutY="447.0" mnemonicParsing="false" onAction="#handleAdd" text="add topic">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <TextField fx:id="textTextField" layoutX="4.0" layoutY="597.0" promptText="enter text" />
+      <TextField fx:id="dateTextField" layoutX="4.0" layoutY="622.0" promptText="enter date" />
+      <Button layoutX="4.0" layoutY="647.0" mnemonicParsing="false" onAction="#handleAddPost" text="Add Post" />
+   </children>
+</AnchorPane>
