@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.WindowController">
+   <children>
+      <ListView fx:id="rooms" prefHeight="200.0" prefWidth="600.0" />
+      <TextArea fx:id="selectText" layoutY="194.0" prefHeight="79.0" prefWidth="600.0" />
+      <TextField fx:id="startText" layoutY="273.0" promptText="start" />
+      <TextField fx:id="endText" layoutY="298.0" promptText="end" />
+      <TextField fx:id="typeText" layoutY="323.0" promptText="type" />
+      <Button layoutY="348.0" mnemonicParsing="false" onAction="#handleAdd" text="add" />
+   </children>
+</AnchorPane>

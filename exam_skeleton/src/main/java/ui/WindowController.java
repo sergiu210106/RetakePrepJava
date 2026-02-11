@@ -9,7 +9,7 @@ public class WindowController implements Observer {
     public void setService(Service service) {
         this.service = service;
         this.service.addObserver(this);
-        
+
         //feed.setItems(feed_obs);
 
         update();
