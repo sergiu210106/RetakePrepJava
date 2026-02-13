@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="1000.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.WindowController">
+   <children>
+      <ListView fx:id="myKeywords" layoutX="4.0" layoutY="772.0" prefHeight="200.0" prefWidth="594.0" />
+      <Label layoutX="21.0" layoutY="14.0" text="Feed" />
+      <Label layoutX="7.0" layoutY="230.0" text="My Notes" />
+      <ListView fx:id="myNotes" layoutY="247.0" prefHeight="200.0" prefWidth="601.0" />
+      <Label layoutX="7.0" layoutY="520.0" text="Keywords" />
+      <ListView fx:id="keywords" layoutX="7.0" layoutY="549.0" prefHeight="200.0" prefWidth="601.0" />
+      <TextField fx:id="search" layoutX="59.0" layoutY="516.0" onKeyReleased="#handleFilter" promptText="search" />
+      <Label layoutX="12.0" layoutY="749.0" text="My Keywords" />
+      <ListView fx:id="feed" layoutX="4.0" layoutY="31.0" prefHeight="200.0" prefWidth="594.0" />
+      <Button layoutX="210.0" layoutY="516.0" mnemonicParsing="false" onAction="#handleAddKeyword" text="add keyword" />
+      <TextField fx:id="noteText" layoutX="-3.0" layoutY="447.0" promptText="add  text" />
+      <Button layoutX="146.0" layoutY="447.0" mnemonicParsing="false" onAction="#handleAddNote" text="add note" />
+      <Button layoutX="210.0" layoutY="447.0" mnemonicParsing="false" onAction="#handleEdit" text="edit note" />
+   </children>
+</AnchorPane>
