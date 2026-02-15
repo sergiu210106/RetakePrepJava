@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="1000.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.WindowController">
+   <children>
+      <ListView fx:id="feed" layoutX="2.0" layoutY="23.0" prefHeight="135.0" prefWidth="600.0" />
+      <Label layoutX="2.0" layoutY="6.0" text="feed" />
+      <Label layoutY="158.0" text="My Notes" />
+      <ListView fx:id="journalistNotes" layoutX="2.0" layoutY="175.0" prefHeight="87.0" prefWidth="600.0" />
+      <Label layoutX="2.0" layoutY="378.0" text="Subscriptions" />
+      <ListView fx:id="subscriptions" layoutX="2.0" layoutY="395.0" prefHeight="105.0" prefWidth="600.0" />
+      <Label layoutY="514.0" text="Keywords" />
+      <ListView fx:id="keywords" layoutY="537.0" prefHeight="87.0" prefWidth="600.0" />
+      <TextField fx:id="search" layoutX="52.0" layoutY="510.0" onKeyReleased="#handleSearch" prefHeight="17.0" prefWidth="127.0" promptText="search" />
+      <Button layoutX="179.0" layoutY="510.0" mnemonicParsing="false" onAction="#handleSubscribe" text="subscribe" />
+      <TextField fx:id="writeTF" layoutX="-1.0" layoutY="262.0" promptText="write" />
+      <Button layoutX="153.0" layoutY="262.0" mnemonicParsing="false" onAction="#handlePost" text="post" />
+      <Button layoutX="193.0" layoutY="262.0" mnemonicParsing="false" onAction="#handleModify" text="modify" />
+   </children>
+</AnchorPane>
