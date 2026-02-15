@@ -1,10 +1,12 @@
 package service;
 
-import domain.Observer;
-import domain.Subject;
+import domain.*;
 import repository.DBRepository;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.stream.Collectors;
 
 public class Service implements Subject {
     private DBRepository dbRepository;

@@ -1,8 +1,7 @@
 package repository;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import domain.*;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class DBRepository {
     String URL = "";
@@ -27,4 +26,42 @@ public class DBRepository {
             }
         }
     }
+
+//    public ArrayList<Package> getPackages() {
+//        openConnection();
+//
+//        try  {
+//            PreparedStatement preparedStatement = connection.prepareStatement("select * from packages");
+//            ResultSet rs = preparedStatement.executeQuery();
+//
+//            ArrayList<Package> packages = new ArrayList<>();
+//            while (rs.next()) {
+//                packages.add(new Package(
+//                        rs.getString("recipient"), rs.getString("address"), rs.getFloat("x"), rs.getFloat("y"), rs.getInt("status") != 0
+//                ));
+//            }
+//            return packages;
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        } finally {
+//            closeConnection();
+//        }
+//    }
+//
+//    public void insertPackage(String recipient, String address, float x, float y) {
+//        openConnection();
+//
+//        try  {
+//            PreparedStatement preparedStatement = connection.prepareStatement("insert into packages values (?, ?, ?, ?, 0)");
+//            preparedStatement.setString(1, recipient);
+//            preparedStatement.setString(2, address);
+//            preparedStatement.setFloat(3, x);
+//            preparedStatement.setFloat(4, y);
+//            preparedStatement.executeUpdate();
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        } finally {
+//            closeConnection();
+//        }
+//    }
 }

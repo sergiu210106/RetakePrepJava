@@ -1,6 +1,6 @@
 package ui;
 
-import domain.Courier;
+import domain.Client;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,20 +15,19 @@ public class MainController {
     public void setService(Service service) {
         this.service = service;
         launchWindows();
-        launchCompany();
-        launchMap();
+        launchStaff();
     }
 
     private void launchWindows() {
-        for (Courier courier : service.getCouriers()) {
+        for (Client client : service.getAllClients()) {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/WindowView.fxml"));
                 Parent root = fxmlLoader.load();
                 WindowController userController = fxmlLoader.getController();
-                userController.setService(service, courier);
+                userController.setService(service, client);
 
                 Stage stage = new Stage();
-                stage.setTitle("User " + courier.getName());
+                stage.setTitle("Client " + client.getName());
                 stage.setScene(new Scene(root, 600, 1000));
                 stage.show();
             } catch (IOException e) {
@@ -36,31 +35,16 @@ public class MainController {
             }
         }
     }
-    private void launchCompany() {
+
+    private void launchStaff() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/Company.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/StaffView.fxml"));
             Parent root = fxmlLoader.load();
-            Company userController = fxmlLoader.getController();
+            StaffController userController = fxmlLoader.getController();
             userController.setService(service);
 
             Stage stage = new Stage();
-            stage.setTitle("Company");
-            stage.setScene(new Scene(root, 600, 1000));
-            stage.show();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private void launchMap() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/Map.fxml"));
-            Parent root = fxmlLoader.load();
-            Map userController = fxmlLoader.getController();
-            userController.setService(service);
-
-            Stage stage = new Stage();
-            stage.setTitle("Map");
+            stage.setTitle("Staff");
             stage.setScene(new Scene(root, 600, 1000));
             stage.show();
         } catch (IOException e) {

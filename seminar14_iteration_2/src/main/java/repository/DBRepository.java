@@ -1,8 +1,10 @@
 package repository;
 
-import domain.Courier;
-import domain.Package;
+import domain.Booking;
+import domain.Client;
+import domain.Room;
 
+import java.awt.print.Book;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -30,20 +32,20 @@ public class DBRepository {
         }
     }
 
-    public ArrayList<Courier> getCouriers() {
+    public ArrayList<Client> getClients() {
         openConnection();
 
         try  {
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from couriers");
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from clients");
             ResultSet rs = preparedStatement.executeQuery();
 
-            ArrayList<Courier> couriers = new ArrayList<>();
+            ArrayList<Client> clients = new ArrayList<>();
             while (rs.next()) {
-                couriers.add(new Courier(
-                        rs.getString("name"), rs.getString("listStreets"), rs.getFloat("centerX"), rs.getFloat("centerY"), rs.getFloat("radius")
-                ));
+                clients.add(new Client(
+                        rs.getInt("id"), rs.getString("name"), rs.getString("email")
+                        ));
             }
-            return couriers;
+            return clients;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
@@ -51,20 +53,19 @@ public class DBRepository {
         }
     }
 
-    public ArrayList<Package> getPackages() {
+    public ArrayList<Room> getRooms() {
         openConnection();
 
         try  {
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from packages");
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from rooms");
             ResultSet rs = preparedStatement.executeQuery();
 
-            ArrayList<Package> packages = new ArrayList<>();
+            ArrayList<Room> rooms = new ArrayList<>();
             while (rs.next()) {
-                packages.add(new Package(
-                        rs.getString("recipient"), rs.getString("address"), rs.getFloat("x"), rs.getFloat("y"), rs.getInt("status") != 0
-                ));
+                rooms.add(new Room(rs.getInt("number"), rs.getString("type"),
+                        rs.getString("description"), rs.getFloat("price")));
             }
-            return packages;
+            return rooms;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
@@ -72,15 +73,36 @@ public class DBRepository {
         }
     }
 
-    public void insertPackage(String recipient, String address, float x, float y) {
+    public ArrayList<Booking> getBookings() {
         openConnection();
 
         try  {
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into packages values (?, ?, ?, ?, 0)");
-            preparedStatement.setString(1, recipient);
-            preparedStatement.setString(2, address);
-            preparedStatement.setFloat(3, x);
-            preparedStatement.setFloat(4, y);
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from bookings order by start desc");
+            ResultSet rs = preparedStatement.executeQuery();
+
+            ArrayList<Booking> bookings = new ArrayList<>();
+            while (rs.next()) {
+                bookings.add(new Booking(rs.getInt("clientId"), rs.getInt("roomNumber"),
+                        rs.getString("start"), rs.getString("end")));
+            }
+            return bookings;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            closeConnection();
+        }
+    }
+
+    public void addBooking(int clientId, int roomNumber, String start, String end) {
+        openConnection();
+
+        try  {
+            System.out.println("1");
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into bookings values (?,?,?,?)");
+            preparedStatement.setInt(1, clientId);
+            preparedStatement.setInt(2, roomNumber);
+            preparedStatement.setString(3, start);
+            preparedStatement.setString(4, end);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -88,21 +110,4 @@ public class DBRepository {
             closeConnection();
         }
     }
-
-    public void deliver(String recipient) {
-        openConnection();
-
-        try  {
-            PreparedStatement preparedStatement = connection.prepareStatement("update packages set status = 1 where recipient = ?");
-            preparedStatement.setString(1, recipient);
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
-            closeConnection();
-        }
-    }
-
 }
-
-

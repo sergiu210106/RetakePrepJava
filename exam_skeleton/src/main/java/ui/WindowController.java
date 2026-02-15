@@ -1,7 +1,14 @@
 package ui;
 
-import domain.Observer;
+import domain.*;
 import service.Service;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+
 
 public class WindowController implements Observer {
     private Service service;
